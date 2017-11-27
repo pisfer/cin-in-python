@@ -1,6 +1,11 @@
 import re
 
 
+class ArgumentError(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+        
 class cin:
     """cin func in python"""
 
