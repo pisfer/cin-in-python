@@ -9,14 +9,14 @@ class ArgumentError(Exception):
 class cin:
     """cin func in python"""
 
-    def __init__(self, *args, n):
+    def __init__(self, *args, text):
         self.args = args
-        self.n = n
-        self.pora = "(?P<" + self.args[0] + ">.*)"
+        self.n = text
+        self.pora = "(?P<" + self.args[0] + ">[\w\d\S]*)"
         self.index = ""
         self.vbn = {}
         for self.g in self.args[1:]:
-            self.pora = self.pora + "\s+(?P<" + self.g + ">.*)"
+            self.pora = self.pora + "\s+(?P<" + self.g + ">[\w\d\S]*)"
         self.i = input(self.n)
         self.hpo = re.match(self.pora, self.i)
         if self.hpo:
@@ -31,4 +31,6 @@ class cin:
 
 
 if __name__ == '__main__':
-    print(cin("b", "n", n="d").get("b"))
+    cin_python = cin("first1", "second2", text = "input two or more words like 'hello everyone' - ")
+    print("first word - " + cin_python.get("first1"))
+    print("second word - " + cin_python.get("second2"))
